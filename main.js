@@ -9,13 +9,12 @@ window.onload = function() {
         } else {
             var id = getUrlQueries()["q"]
         }
-        //var id = getUrlQueries()["q"] == "https://www.youtube.com/watch?v" ? getUrlQueries(location.search.slice(33))["v"] : getUrlQueries()["q"];
-        console.log(id);
         inner("<iframe width='560' height='315' src='https://www.youtube-nocookie.com/embed/"+id+"' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",id)
         document.querySelector("body").innerHTML += "<br><a target='blank_' href='https://www-youtube-com.translate.goog/watch?v="+id+"&_x_tr_sl=en&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=op,wapp'>page(google translate</a>";
         document.querySelector("body").innerHTML += "<br><a target='blank_' href='https://www.youtube.com/watch?v="+id+"'>page(youtube</a>";
     }
     add_input_btn();
+    add_search_btn();
 };
 function add_input_btn(){
     el = document.createElement("input");
@@ -31,6 +30,28 @@ function add_input_btn(){
     document.querySelector("body").appendChild(el);
     document.querySelector("body").appendChild(el2);
 }
+
+function add_search_btn(){
+    el = document.createElement("input");
+    el.setAttribute("type","text");
+    el.setAttribute("id","input_search");
+
+    el2 = document.createElement("button");
+    el2.setAttribute("id","btn_search");
+    el2.setAttribute("onclick","btn_search()");
+    el2.innerHTML = "search";
+
+    document.querySelector("body").innerHTML += "<br>";
+    document.querySelector("body").appendChild(el);
+    document.querySelector("body").appendChild(el2);
+}
+
+function btn_search(){
+    var search = document.querySelector("#input_search").value;
+    var url = "https://www-youtube-com.translate.goog/results?search_query="+search+"&_x_tr_sl=auto&_x_tr_tl=ja&_x_tr_hl=ja&_x_tr_pto=op,wapp";
+    window.open(url);
+}
+
 function btn_go(){
     var url = document.querySelector("#input_url").value;
     location.href = location.origin+location.pathname+"?q="+url;
