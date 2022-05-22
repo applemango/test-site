@@ -33,7 +33,7 @@ function add_input_btn(){
 }
 function btn_go(){
     var url = document.querySelector("#input_url").value;
-    location.href = location.origin+"?q="+url;
+    location.href = location.origin+location.pathname+"?q="+url;
 }
 function inner(html,title) {
     document.querySelector("body").innerHTML += html;
