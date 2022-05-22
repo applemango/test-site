@@ -2,11 +2,39 @@ window.onload = function() {
     if(getUrlQueries()["q"] == undefined){
         inner("<p>Example => <a href='https://applemango.github.io/test-site/?q=lJIrF4YjHfQ'>https://applemango.github.io/test-site/?q=lJIrF4YjHfQ</a></p>","error")
     } else {
-        var id = getUrlQueries()["q"] == "https://www.youtube.com/watch?v" ? getUrlQueries(location.search.slice(33))["v"] : getUrlQueries()["q"];
+        if(getUrlQueries()["q"] == "https://www.youtube.com/watch?v"){
+            var id = getUrlQueries(location.search.slice(33))["v"]
+        } else if(getUrlQueries()["q"] == "https://www-youtube-com.translate.goog/watch?v") {
+            var id = getUrlQueries(location.search.slice(48))["v"]
+        } else {
+            var id = getUrlQueries()["q"]
+        }
+        //var id = getUrlQueries()["q"] == "https://www.youtube.com/watch?v" ? getUrlQueries(location.search.slice(33))["v"] : getUrlQueries()["q"];
+        console.log(id);
         inner("<iframe width='560' height='315' src='https://www.youtube-nocookie.com/embed/"+id+"' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",id)
+        document.querySelector("body").innerHTML += "<br><a target='blank_' href='https://www-youtube-com.translate.goog/watch?v="+id+"&_x_tr_sl=en&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=op,wapp'>page(google translate</a>";
+        document.querySelector("body").innerHTML += "<br><a target='blank_' href='https://www.youtube.com/watch?v="+id+"'>page(youtube</a>";
     }
+    add_input_btn();
 };
+function add_input_btn(){
+    el = document.createElement("input");
+    el.setAttribute("type","text");
+    el.setAttribute("id","input_url");
 
+    el2 = document.createElement("button");
+    el2.setAttribute("id","btn_url");
+    el2.setAttribute("onclick","btn_go()");
+    el2.innerHTML = "go";
+
+    document.querySelector("body").innerHTML += "<br>";
+    document.querySelector("body").appendChild(el);
+    document.querySelector("body").appendChild(el2);
+}
+function btn_go(){
+    var url = document.querySelector("#input_url").value;
+    location.href = location.origin+"?q="+url;
+}
 function inner(html,title) {
     document.querySelector("body").innerHTML += html;
     document.querySelector("head").innerHTML += "<meta charset='utf-8'><title>"+title+"</title>";
