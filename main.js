@@ -40,8 +40,8 @@ function html_b(){
 }
 function html_a(){
     add_input_btn();
-    add_search_btn();
     add_translate_btn();
+    add_search_btn();
 }
 
 function add_input_btn(){
@@ -85,7 +85,7 @@ function add_translate_btn(){
     el2 = document.createElement("button");
     el2.setAttribute("id","btn_translate");
     el2.setAttribute("onclick","btn_translate()");
-    el2.innerHTML = "translate";
+    el2.innerHTML = "go";
 
     document.querySelector("body > #main").innerHTML += "<br>";
     document.querySelector("body > #main").appendChild(el);
