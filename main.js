@@ -5,7 +5,7 @@ window.onload = function() {
         document.querySelector("head").innerHTML += "<title>yt player</title>";
         var width = document.body.clientWidth < 620 ? document.body.clientWidth-(10+20)*2 : 560;
         var height = document.body.clientWidth < 620 ? width*0.5625 : 315;
-        document.querySelector("#main").innerHTML += "<div id='no_id' style='width: "+width+"px;height: "+height+"px;'><div id='btn'></div></div><div id='btn'></div>"
+        document.querySelector("#main").innerHTML += "<div id='no_id' style='width: "+width+"px;height: "+height+"px;'></div><div id='btn'><div></div></div>"
         add_input_btn();
     } else {
         if(getUrlQueries()["q"] == "https://www.youtube.com/watch?v"){
@@ -20,7 +20,7 @@ window.onload = function() {
         var width = document.body.clientWidth < 620 ? document.body.clientWidth-(10+20)*2 : 560;
         var height = document.body.clientWidth < 620 ? width*0.5625 : 315;
         document.querySelector("body > #main").innerHTML += "<iframe width='"+width+"' height='"+height+"' src='https://www.youtube-nocookie.com/embed/"+id+"' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>"
-        document.querySelector("body > #main").innerHTML += "<div></div><div id='btn'></div>"
+        document.querySelector("body > #main").innerHTML += "<div></div><div id='btn'><div></div></div>"
         document.querySelector("head").innerHTML += "<title>"+id+"</title>";
         add_input_btn()
     }
@@ -34,7 +34,7 @@ function add_input_btn(){
     el2.setAttribute("id","btn_url");
     el2.setAttribute("onclick","btn_go()");
     el2.innerHTML = "";
-    document.querySelector("body > #main > #btn").appendChild(el);
+    document.querySelector("body > #main > #btn > div").appendChild(el);
     document.querySelector("body > #main > #btn").appendChild(el2);
     document.querySelector("#input_url").addEventListener("keydown", function(e){
         if(e.keyCode == 13){

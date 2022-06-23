@@ -11,11 +11,7 @@ h1 {
     font-weight: 700;
     color: #31344b;
 }
-/*
-body {
-    height: 100%;
-}
-*/
+
 #main {
     margin: 10px;
     transform: translateY(40%);
@@ -47,53 +43,6 @@ body {
     margin: 0 auto;
 }
 
-
-
-/*input {
-    width: calc(100% - 75px);
-    height: 40px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    padding: 0 10px;
-    font-size: 14px;
-
-    color: #31344b;
-
-    background-color: #e6e7ee;
-    border-radius: .55rem;
-    box-shadow: inset 2px 2px 5px #b8b9be, inset -3px -3px 7px #fff;
-    transition: box-shadow .15s;
-}
-input:focus-visible {
-    outline: none;
-    box-shadow: none;
-}
-button {
-    width: 65px;
-    height: 40px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    background: #eee;
-    font-size: 14px;
-    cursor: pointer;
-
-    color: #31344b;
-
-    text-align: center;
-    padding: 1px 6px;
-    display: inline-block;
-
-    border-radius: .55rem;
-    margin: 0;
-    margin-left: 10px;
-    background-color: #e6e7ee;
-    box-shadow: 3px 3px 6px #b8b9be, -3px -3px 6px #fff;
-    transition: box-shadow .15s;
-}
-button:hover {
-    box-shadow: none;
-}*/
-
 #btn {
     width: 100%;
     height: 45px;
@@ -101,7 +50,7 @@ button:hover {
     display: flex;
     border-radius: .55rem;
 }
-#btn > input {
+#btn > div {
     width: 100%;
     box-shadow: inset 2px 2px 5px #b8b9be, inset -3px -3px 7px #fff;
     border: none;
@@ -110,8 +59,22 @@ button:hover {
     border-bottom-right-radius: 0;
     background-color: #e6e7ee;
     padding-right: 0;
+    padding-left: 0;
+    font-size: 1rem;
+}
+#btn > div > input {
+    width: 100%;
+    height: 100%;
+    /*box-shadow: inset 2px 2px 5px #b8b9be, inset -3px -3px 7px #fff;*/
+    border: none;
+    border-radius: .55rem;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    background-color: #e6e7ee;
+    padding-right: 0;
     padding-left: 10px;
     font-size: 1rem;
+    background: none;
 }
 input:focus-visible {
     outline: none;
