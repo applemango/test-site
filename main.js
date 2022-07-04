@@ -1,3 +1,4 @@
+var resizeType = null
 window.onload = function() {
     document.querySelector("head").innerHTML = "<link rel='stylesheet' href='main.css'><meta name='viewport' content='width=device-width, initial-scale=1.0'><meta charset='utf-8'>";
     document.querySelector("body").innerHTML = "<div id='main'></div>";
@@ -6,6 +7,7 @@ window.onload = function() {
         var width = document.body.clientWidth < 620 ? document.body.clientWidth-(10+20)*2 : 560;
         var height = document.body.clientWidth < 620 ? width*0.5625 : 315;
         document.querySelector("#main").innerHTML += "<div id='no_id' style='width: "+width+"px;height: "+height+"px;'></div><div id='btn'><div></div></div>"
+        resizeType = false
         add_input_btn();
     } else {
         if(getUrlQueries()["q"] == "https://www.youtube.com/watch?v"){
@@ -20,11 +22,24 @@ window.onload = function() {
         var width = document.body.clientWidth < 620 ? document.body.clientWidth-(10+20)*2 : 560;
         var height = document.body.clientWidth < 620 ? width*0.5625 : 315;
         document.querySelector("body > #main").innerHTML += "<iframe width='"+width+"' height='"+height+"' src='https://www.youtube-nocookie.com/embed/"+id+"' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>"
+        resizeType = true
         document.querySelector("body > #main").innerHTML += "<div></div><div id='btn'><div></div></div>"
         document.querySelector("head").innerHTML += "<title>"+id+"</title>";
         add_input_btn()
     }
 };
+window.addEventListener("resize", resize)
+function resize() {
+    var width = document.body.clientWidth < 620 ? document.body.clientWidth-(10+20)*2 : 560;
+    var height = document.body.clientWidth < 620 ? width*0.5625 : 315;
+    if (resizeType) {
+        document.querySelector("#main > iframe").width = width
+        document.querySelector("#main > iframe").height = height
+    } else {
+        document.querySelector("div#no_id").style.width = width
+        document.querySelector("div#no_id").style.height = height
+    }
+}
 function add_input_btn(){
     el = document.createElement("input");
     el.setAttribute("type","text");
@@ -52,9 +67,8 @@ function getUrlQueries(q) {
     var queryStr = q == undefined ? location.search.slice(1) : q;
     queries = {};
     if (!queryStr) {return queries;}
-        queryStr.split('&').forEach(function(queryStr) {
-            var queryArr = queryStr.split('=');
-            queries[queryArr[0]] = queryArr[1];
-    });
+    queryStr.split('&').forEach(function(queryStr) {
+        var queryArr = queryStr.split('=');
+        queries[queryArr[0]] = queryArr[1]});
     return queries;
 }
